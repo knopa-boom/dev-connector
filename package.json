@@ -28,6 +28,7 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "@types/config": "0.0.41",
     "concurrently": "^7.0.0",
     "nodemon": "^2.0.15"
   }
