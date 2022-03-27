@@ -1,4 +1,6 @@
 const express = require("express");
+const request = require("request");
+const config = require("config");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const normalize = require("normalize-url");
@@ -46,51 +48,54 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // destructure the request
     const {
+      company,
       website,
+      location,
+      bio,
+      status,
+      githubusername,
       skills,
       youtube,
+      facebook,
       twitter,
       instagram,
       linkedin,
-      facebook,
-      // spread the rest of the fields we don't need to check
-      ...rest
     } = req.body;
 
     // build a profile
-    const profileFields = {
-      user: req.user.id,
-      website: website,
-      skills: Array.isArray(skills)
-        ? skills
-        : skills.split(",").map((skill) => " " + skill.trim()),
-      ...rest,
-    };
+    const profileFields = {};
+    profileFields.user = req.user.id;
+    if (company) profileFields.company = company;
+    if (website) profileFields.website = website;
+    if (location) profileFields.location = location;
+    if (bio) profileFields.bio = bio;
+    if (status) profileFields.status = status;
+    if (githubusername) profileFields.githubusername = githubusername;
+    if (skills) {
+      profileFields.skills = skills.split(",").map((skill) => skill.trim());
+    }
 
     // Build socialFields object
-    const socialFields = { youtube, twitter, instagram, linkedin, facebook };
-
-    // normalize social fields to ensure valid url
-    for (const [key, value] of Object.entries(socialFields)) {
-      if (value && value.length > 0)
-        socialFields[key] = normalize(value, { forceHttps: true });
-    }
-    // add to profileFields
-    profileFields.social = socialFields;
+    // Build social object
+    profileFields.social = {};
+    if (youtube) profileFields.social.youtube = youtube;
+    if (twitter) profileFields.social.twitter = twitter;
+    if (facebook) profileFields.social.facebook = facebook;
+    if (linkedin) profileFields.social.linkedin = linkedin;
+    if (instagram) profileFields.social.instagram = instagram;
 
     try {
       // Using upsert option (creates new doc if no match is found):
       let profile = await Profile.findOneAndUpdate(
         { user: req.user.id },
         { $set: profileFields },
-        { new: true, upsert: true, setDefaultsOnInsert: true }
+        { new: true, upsert: true }
       );
-      return res.json(profile);
+      res.json(profile);
     } catch (err) {
       console.error(err.message);
-      return res.status(500).send("Server Error");
+      res.status(500).send("Server Error");
     }
   }
 );
@@ -292,6 +297,38 @@ router.delete("/education/:edu_id", auth, async (req, res) => {
     await profile.save();
 
     res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send("Server Error");
+  }
+});
+
+/**
+ * @route  GET api/profile/github/:username
+ * @desc   Get user repos from Github
+ * @access Public
+ */
+router.get("/github/:username", async (req, res) => {
+  try {
+    const options = {
+      uri: `https://api.github.com/users/${
+        req.params.username
+      }/repos?per_page=5&sort=created:asc$cliend_id=${config.get(
+        "githubClientId"
+      )}&client_secret=${config.get("githubSecret")}`,
+      method: "GET",
+      headers: { "user-agent": "node.js" },
+    };
+
+    request(options, (error, response, body) => {
+      if (error) console.error(error);
+
+      if (response.statusCode != 200) {
+        return res.status(404).json({ msg: "No github profile found" });
+      }
+
+      res.json(JSON.parse(body));
+    });
   } catch (err) {
     console.error(err.message);
     return res.status(500).send("Server Error");
