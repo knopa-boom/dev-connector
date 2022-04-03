@@ -11,6 +11,11 @@ app.use(express.json({ extended: false }));
 
 app.get("/", (req, res) => res.send("API Running"));
 
+app.get("/cors", (req, res) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.send({ msg: "This has CORS enabled 🎈" });
+});
+
 // Define Routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
