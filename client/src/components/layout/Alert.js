@@ -1,15 +1,13 @@
-import React from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+ import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const Alert = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
-  alerts.map((alert) => (
-    <div className="container">
-      <div key={alert.id} className={`alert alert-${alert.alertType}`}>
-        {alert.msg}
-      </div>
+  alerts.map(alert => (
+    <div key={alert.id} className={`alert alert-${alert.alertType}`}>
+      {alert.msg}
     </div>
   ));
 
@@ -18,7 +16,7 @@ Alert.propTypes = {
 };
 
 // mapStateToProps is used for selecting the part of the data from the store that the connected component needs
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   alerts: state.alert,
 });
 
