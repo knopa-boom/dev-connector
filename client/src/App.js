@@ -7,6 +7,8 @@ import Navbar from "./components/layout/Navbar";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alert from "./components/layout/Alert";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import store from "./store";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
@@ -29,8 +31,12 @@ const App = () => {
         <Alert />
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route
+            path="dashboard"
+            element={<PrivateRoute component={Dashboard} />}
+          />
         </Routes>
       </Router>
     </Provider>
