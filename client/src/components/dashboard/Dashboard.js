@@ -16,7 +16,7 @@ const Dashboard = ({
   return loading && profile === null ? (
     <Spinner />
   ) : (
-    <div className="dashboard container">
+    <section className="container">
       <h1 className="large text-primary">Dashboard</h1>
       <p className="lead">
         {/* TODO: add user icon */}
@@ -32,7 +32,7 @@ const Dashboard = ({
           </Link>
         </Fragment>
       )}
-    </div>
+    </section>
   );
 };
 
