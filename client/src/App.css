@@ -150,10 +150,14 @@ img {
 
 .alert {
   padding: 0.8rem;
-  margin: 1rem 0;
+  margin-top: 70px;
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
+}
+
+.dashboard {
+  margin-top: 70px;
 }
 
 .btn-primary,
