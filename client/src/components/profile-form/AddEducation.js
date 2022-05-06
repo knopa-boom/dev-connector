@@ -83,7 +83,7 @@ const AddEducation = ({ addEducation }) => {
                 setFormData({ ...formData, current: !current });
               }}
             />
-            Current Job
+            Current
           </p>
         </div>
         <div className="form-group">
