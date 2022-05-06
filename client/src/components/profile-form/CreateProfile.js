@@ -56,7 +56,7 @@ const CreateProfile = ({
   return loading && profile === null ? (
     <Navigate to="/dashboard" />
   ) : (
-    <Fragment>
+    <section className="container">
       <h1 className="large text-primary">Create Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user" /> Let's get some information to make your
@@ -225,7 +225,7 @@ const CreateProfile = ({
           Go Back
         </Link>
       </form>
-    </Fragment>
+    </section>
   );
 };
 

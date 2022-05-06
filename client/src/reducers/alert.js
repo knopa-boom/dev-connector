@@ -7,7 +7,6 @@ const alert = (state = initialState, action) => {
 
   switch (type) {
     case SET_ALERT:
-      console.log("state success", [...state, payload]);
       return [...state, payload];
     case REMOVE_ALERT:
       return state.filter((alert) => alert.id !== payload);
