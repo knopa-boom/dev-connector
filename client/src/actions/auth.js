@@ -53,6 +53,7 @@ export const register =
       });
 
       dispatch(loadUser());
+      
     } catch (err) {
       const errors = err.response.data.errors;
 
