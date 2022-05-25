@@ -8,7 +8,6 @@ const EditProfile = ({
   createProfile,
   getCurrentProfile,
   profile: { profile, loading },
-  history,
 }) => {
   const [formData, setFormData] = useState({
     company: "",
@@ -16,7 +15,7 @@ const EditProfile = ({
     location: "",
     status: "",
     skills: "",
-    githubusername: "",
+    githubUserName: "",
     bio: "",
     twitter: "",
     facebook: "",
@@ -35,7 +34,7 @@ const EditProfile = ({
     location,
     status,
     skills,
-    githubusername,
+    githubUserName,
     bio,
     twitter,
     facebook,
@@ -57,8 +56,8 @@ const EditProfile = ({
       location: loading || !profile.location ? "" : profile.location,
       status: loading || !profile.status ? "" : profile.status,
       skills: loading || !profile.skills ? "" : profile.skills.join(","),
-      githubusername:
-        loading || !profile.githubusername ? "" : profile.githubusername,
+      githubUserName:
+        loading || !profile.githubUserName ? "" : profile.githubUserName,
       bio: loading || !profile.bio ? "" : profile.bio,
       twitter: loading || !profile.twitter ? "" : profile.twitter,
       facebook: loading || !profile.facebook ? "" : profile.facebook,
@@ -66,8 +65,8 @@ const EditProfile = ({
       youtube: loading || !profile.youtube ? "" : profile.youtube,
       instagram: loading || !profile.instagram ? "" : profile.instagram,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
+  
   return loading && profile === null ? (
     <Navigate to="/dashboard" />
   ) : (
@@ -147,8 +146,8 @@ const EditProfile = ({
           <input
             type="text"
             placeholder="Github Username"
-            name="githubusername"
-            value={githubusername}
+            name="githubUserName"
+            value={githubUserName}
             onChange={(e) => onChange(e)}
           />
           <small className="form-text">
