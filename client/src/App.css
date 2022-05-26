@@ -378,6 +378,7 @@ button {
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .profile-top img {
@@ -396,6 +397,7 @@ button {
 .profile-about {
   grid-area: about;
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .profile-about .skills {
@@ -407,10 +409,16 @@ button {
 
 .profile-exp {
   grid-area: exp;
+  width: 50%;
 }
 
 .profile-edu {
   grid-area: edu;
+  width: 50%;
+}
+
+.profile-details {
+  display: flex;
 }
 
 .profile-exp h2,
