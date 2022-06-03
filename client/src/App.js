@@ -40,11 +40,7 @@ const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="/profile/:id" element={<Profile />} />
-
-          <Route
-            path="profiles"
-            element={<PrivateRoute component={Profiles} />}
-          />
+          <Route path="profiles" element={<Profiles />} />
           <Route
             path="dashboard"
             element={<PrivateRoute component={Dashboard} />}

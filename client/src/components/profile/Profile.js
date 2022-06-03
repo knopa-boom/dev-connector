@@ -70,11 +70,11 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
               )}
             </div>
           </div>
-          <div className="repos">
+          {/* <div className="repos">
           {profile.githubusername !== null && (
               <ProfileGithub username={profile.githubusername} />
             )}
-          </div>
+          </div> */}
         </div>
       )}
     </section>

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { RiLoginBoxLine } from "react-icons/ri";
+
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
-import PropTypes from 'prop-types'
 import { login } from "../../actions/auth";
+import PropTypes from "prop-types";
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -22,15 +25,15 @@ const Login = ({ login, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Navigate to='/dashboard' />;
+    return <Navigate to="/dashboard" />;
   }
 
   return (
     <div className="container">
       <h1 className="large text-primary">Sign In</h1>
-      <p className="lead">
-        {/* <FontAwesomeIcon icon={solid("user-plus")} /> */}
-        Sign Into Your Account
+      <p className="lead sign">
+        <RiLoginBoxLine />
+        <span> Sign Into Your Account</span>
       </p>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
@@ -68,11 +71,11 @@ const Login = ({ login, isAuthenticated }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { login })(Login);

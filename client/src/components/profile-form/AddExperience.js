@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GoGitBranch } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -27,8 +28,8 @@ const AddExperience = ({ addExperience }) => {
     <section className="container">
       <h1 className="large text-primary">Add An Experience</h1>
       <p className="lead">
-        <i className="fas fa-code-branch" /> Add any developer/programming
-        positions that you have had in the past
+        <GoGitBranch /> Add any developer/programming positions that you have
+        had in the past
       </p>
       <small>* = required field</small>
       <form
@@ -82,7 +83,7 @@ const AddExperience = ({ addExperience }) => {
                 setFormData({ ...formData, current: !current });
               }}
             />
-            Current Job
+            <span className="m-l"> Current Job</span>
           </p>
         </div>
         <div className="form-group">

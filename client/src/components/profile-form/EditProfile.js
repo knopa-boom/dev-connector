@@ -1,8 +1,17 @@
 import React, { useEffect, useState, Fragment } from "react";
+import { FaUser } from "react-icons/fa";
+import { BsTwitter } from "react-icons/bs";
+import {
+  AiFillFacebook,
+  AiFillYoutube,
+  AiFillLinkedin,
+  AiOutlineInstagram,
+} from "react-icons/ai";
+
 import { Link, useNavigate, Navigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
+import PropTypes from "prop-types";
 
 const EditProfile = ({
   createProfile,
@@ -15,7 +24,7 @@ const EditProfile = ({
     location: "",
     status: "",
     skills: "",
-    githubUserName: "",
+    githubusername: "",
     bio: "",
     twitter: "",
     facebook: "",
@@ -34,7 +43,7 @@ const EditProfile = ({
     location,
     status,
     skills,
-    githubUserName,
+    githubusername,
     bio,
     twitter,
     facebook,
@@ -56,8 +65,8 @@ const EditProfile = ({
       location: loading || !profile.location ? "" : profile.location,
       status: loading || !profile.status ? "" : profile.status,
       skills: loading || !profile.skills ? "" : profile.skills.join(","),
-      githubUserName:
-        loading || !profile.githubUserName ? "" : profile.githubUserName,
+      githubusername:
+        loading || !profile.githubusername ? "" : profile.githubusername,
       bio: loading || !profile.bio ? "" : profile.bio,
       twitter: loading || !profile.twitter ? "" : profile.twitter,
       facebook: loading || !profile.facebook ? "" : profile.facebook,
@@ -66,15 +75,17 @@ const EditProfile = ({
       instagram: loading || !profile.instagram ? "" : profile.instagram,
     });
   }, [loading, getCurrentProfile]);
-  
+
   return loading && profile === null ? (
     <Navigate to="/dashboard" />
   ) : (
     <div className="container">
       <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
-        <i className="fas fa-user" /> Let's get some information to make your
-        profile stand out
+        <FaUser />
+        <span className="m-l">
+          Let's get some information to make your profile stand out
+        </span>
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
@@ -146,8 +157,8 @@ const EditProfile = ({
           <input
             type="text"
             placeholder="Github Username"
-            name="githubUserName"
-            value={githubUserName}
+            name="githubusername"
+            value={githubusername}
             onChange={(e) => onChange(e)}
           />
           <small className="form-text">
@@ -178,7 +189,9 @@ const EditProfile = ({
         {displaySocialInputs && (
           <Fragment>
             <div className="form-group social-input">
-              <i className="fab fa-twitter fa-2x" />
+              <span className="social-icon">
+                <BsTwitter size="25px" color="#38a1f3" />
+              </span>
               <input
                 type="text"
                 placeholder="Twitter URL"
@@ -189,7 +202,9 @@ const EditProfile = ({
             </div>
 
             <div className="form-group social-input">
-              <i className="fab fa-facebook fa-2x" />
+              <span className="social-icon">
+                <AiFillFacebook size="25px" color="#3b5998" />
+              </span>
               <input
                 type="text"
                 placeholder="Facebook URL"
@@ -200,7 +215,9 @@ const EditProfile = ({
             </div>
 
             <div className="form-group social-input">
-              <i className="fab fa-youtube fa-2x" />
+              <span className="social-icon">
+                <AiFillYoutube size="25px" color="#c4302b" />
+              </span>
               <input
                 type="text"
                 placeholder="YouTube URL"
@@ -211,7 +228,9 @@ const EditProfile = ({
             </div>
 
             <div className="form-group social-input">
-              <i className="fab fa-linkedin fa-2x" />
+              <span className="social-icon">
+                <AiFillLinkedin size="25px" color="#0077b5" />
+              </span>
               <input
                 type="text"
                 placeholder="Linkedin URL"
@@ -222,7 +241,9 @@ const EditProfile = ({
             </div>
 
             <div className="form-group social-input">
-              <i className="fab fa-instagram fa-2x" />
+              <span className="social-icon">
+                <AiOutlineInstagram size="25px" color="#3f729b" />
+              </span>
               <input
                 type="text"
                 placeholder="Instagram URL"

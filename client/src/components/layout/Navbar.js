@@ -1,4 +1,8 @@
 import React, { Fragment } from "react";
+import { FaCode } from "react-icons/fa";
+
+import { FaUser } from "react-icons/fa";
+import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { logout } from "../../actions/auth";
 import { connect } from "react-redux";
@@ -12,14 +16,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
       <li>
         <Link to="/dashboard">
-          {/* TODO: add user icon */}
-          <span>Dashboard</span>
+          <FaUser size="13px" />
+          <span className="m-l">Dashboard</span>
         </Link>
       </li>
       <li>
-        <Link onClick={logout} to="#!">
-          {/* TODO: add logout icon */}
-          <span className="hide-sm">Logout</span>
+        <Link onClick={logout} to="/">
+          <span className="logout-icon-wrap">
+            <TbLogout size="17px" />
+          </span>
+          <span className="hide-sm logout-text">Logout</span>
         </Link>
       </li>
     </ul>
@@ -28,7 +34,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="#!">Developers</Link>
+        <Link to="/profiles">Developers</Link>
       </li>
       <li>
         <Link to="/register">Register</Link>
@@ -43,7 +49,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-          <i className="fas fa-code"></i> DevConnector
+          <span className="logo-wrap"><FaCode/></span>
+          <span className="logo-title">DevConnector</span>
         </Link>
       </h1>
       {!loading && (

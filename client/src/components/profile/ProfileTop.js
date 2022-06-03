@@ -1,4 +1,14 @@
 import React from "react";
+import { CgWebsite } from "react-icons/cg";
+import { FaGlobe } from "react-icons/fa";
+import {
+  ImYoutube,
+  ImInstagram,
+  ImTwitter,
+  ImFacebook2,
+  ImLinkedin,
+} from "react-icons/im";
+
 import PropTypes from "prop-types";
 
 const ProfileTop = ({
@@ -21,43 +31,68 @@ const ProfileTop = ({
       <p>{location && <span>{location}</span>}</p>
       <div className="icons my-1">
         {website && (
-          <a href={website} target="_blank" rel="noopener noreferrer">
-            <i className="fas fa-globe fa-2x"></i>
-            ws
+          <a
+            className="social"
+            href={website}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGlobe />
           </a>
         )}
 
         {social && social.twitter && (
-          <a href={social.twitter} target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-twitter fa-2x"></i>
-            twr
+          <a
+            className="social"
+            href={social.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ImTwitter />
           </a>
         )}
 
         {social && social.facebook && (
-          <a href={social.facebook} target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-facebook fa-2x"></i>
-            fb
+          <a
+            className="social"
+            href={social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ImFacebook2 />
           </a>
         )}
 
         {social && social.linkedin && (
-          <a href={social.linkedin} target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-linkedin fa-2x"></i>
-            ln
+          <a
+            className="social"
+            href={social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ImLinkedin />
           </a>
         )}
 
         {social && social.youtube && (
-          <a href={social.youtube} target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-youtube fa-2x"></i>
-            yt
+          <a
+            className="social"
+            href={social.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ImYoutube />
           </a>
         )}
 
         {social && social.instagram && (
-          <a href={social.instagram} target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-instagram fa-2x"></i>
+          <a
+            className="social"
+            href={social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ImInstagram />
           </a>
         )}
       </div>

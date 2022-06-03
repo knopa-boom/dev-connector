@@ -1,9 +1,13 @@
 import React, { useEffect, Fragment } from "react";
-import PropTypes from "prop-types";
+import { FaConnectdevelop } from "react-icons/fa";
+
 import Spinner from "../layout/Spinner";
 import ProfileItem from "./ProfileItem";
+
 import { connect } from "react-redux";
 import { getProfiles } from "../../actions/profile";
+import PropTypes from "prop-types";
+
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
@@ -17,8 +21,10 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Fragment>
           <h1 className="large text-primary">Developers</h1>
           <p className="lead">
-            <i className="fab fa-connectdevelop" /> Browse and connect with
-            developers
+            <span>
+              <FaConnectdevelop size="19px" />
+            </span>
+            <span className="m-l">Browse and connect with developers</span>
           </p>
           <div className="profiles">
             {profiles.length > 0 ? (

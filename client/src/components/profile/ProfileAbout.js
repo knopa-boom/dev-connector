@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
 const ProfileAbout = ({
@@ -21,7 +23,8 @@ const ProfileAbout = ({
     <div className="skills">
       {skills.map((skill, index) => (
         <div key={index} className="p-1">
-          <i className="fas fa-check" /> {skill}
+          <FontAwesomeIcon icon={faCheck} />
+          <span className="skill">{skill}</span>
         </div>
       ))}
     </div>

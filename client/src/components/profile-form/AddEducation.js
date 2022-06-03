@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GoGitBranch } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -28,8 +29,7 @@ const AddEducation = ({ addEducation }) => {
     <section className="container">
       <h1 className="large text-primary">Add An Education</h1>
       <p className="lead">
-        <i className="fas fa-code-branch" /> Add any school or bootcamp that you
-        have attended
+        <GoGitBranch /> Add any school or bootcamp that you have attended
       </p>
       <small>* = required field</small>
       <form
@@ -83,7 +83,7 @@ const AddEducation = ({ addEducation }) => {
                 setFormData({ ...formData, current: !current });
               }}
             />
-            Current
+            <span className="m-l">Current</span>
           </p>
         </div>
         <div className="form-group">
@@ -116,7 +116,7 @@ const AddEducation = ({ addEducation }) => {
 };
 
 AddEducation.propTypes = {
-  addExperience: PropTypes.func.isRequired,
+  addEducation: PropTypes.func.isRequired,
 };
 
 export default connect(null, { addEducation })(AddEducation);

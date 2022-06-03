@@ -1,11 +1,15 @@
 import React, { useState } from "react";
+import { HiUserAdd } from "react-icons/hi";
+
+import { Navigate } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/auth";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
-const Register = ({ setAlert , register}) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,16 +28,20 @@ const Register = ({ setAlert , register}) => {
     if (password !== password2) {
       setAlert("Passwords do not match", "danger");
     } else {
-      register({name, email, password});
+      register({ name, email, password });
     }
   };
+
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" />;
+  }
 
   return (
     <div className="container">
       <h1 className="large text-primary">Sign Up</h1>
-      <p className="lead">
-        {/* <FontAwesomeIcon icon={solid("user-plus")} /> */}
-        Create Your Account
+      <p className="lead sign">
+        <HiUserAdd />
+        <span className="signup-title">Create Your Account</span>
       </p>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
@@ -91,7 +99,12 @@ const Register = ({ setAlert , register}) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-}
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
 // connect() func connects a React Component (Register) to a Redux store
-export default connect(null, { setAlert, register })(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);

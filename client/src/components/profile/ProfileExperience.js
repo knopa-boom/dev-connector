@@ -8,8 +8,14 @@ const ProfileExperience = ({
   <div>
     <h3 className="text-dark">{company}</h3>
     <p>
-      <Moment format="YYYY/MM/DD">{from}</Moment> -{" "}
-      {!to ? "Now" : <Moment format="YYYY/MM/DD">{to}</Moment>}
+      <Moment className="exp-from" format="YYYY/MM/DD">{from}</Moment>-
+      {!to ? (
+        <span className="exp-to">Now</span>
+      ) : (
+        <Moment className="exp-to" format="YYYY/MM/DD">
+          {to}
+        </Moment>
+      )}
     </p>
     <p>
       <strong>Position:</strong> {title}
@@ -22,7 +28,7 @@ const ProfileExperience = ({
   </div>
 );
 ProfileExperience.propTypes = {
-  experience: PropTypes.array.isRequired,
+  experience: PropTypes.object.isRequired,
 };
 
 export default ProfileExperience;

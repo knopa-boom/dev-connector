@@ -7,7 +7,7 @@ import {
   UPDATE_PROFILE,
   DELETED_ACCOUNT,
   GET_PROFILES,
-  GET_REPOS
+  GET_REPOS,
 } from "./types";
 
 // GET current users profile
@@ -77,8 +77,11 @@ export const getProfileById = (userId) => async (dispatch) => {
 // GET Github repos
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/profile/github/${username}`);
-
+    const res = await axios.get(`https://api.github.com/users/${username}`, {
+      headers: {
+        Authorization: `token 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`,
+      },
+    });
     dispatch({
       type: GET_REPOS,
       payload: res.data,
