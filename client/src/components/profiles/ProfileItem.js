@@ -1,6 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+import Spinner from "../layout/Spinner";
+
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -12,30 +15,36 @@ const ProfileItem = ({
     company,
     location,
     skills,
+    loading,
   },
 }) => {
-  console.log("user", profile.user);
   return (
     <div className="profile bg-light">
-      <img src={avatar} alt="avatar" className="round-img" />
-      <div>
-        <h2>{name}</h2>
-        <p>
-          {status} {company && <span> at {company}</span>}
-        </p>
-        <p className="my-1">{location && <span>{location}</span>}</p>
-        <Link to={`/profile/${_id}`} className="btn btn-primary">
-          View Profile
-        </Link>
-      </div>
-      <ul>
-        {skills.slice(0, 4).map((skill, index) => (
-          <li key={index} className="text-primary">
-            <FontAwesomeIcon icon={faCheck} />
-            <span className="skill">{skill}</span>
-          </li>
-        ))}
-      </ul>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <img src={avatar} alt="avatar" className="round-img" />
+          <div>
+            <h2>{name}</h2>
+            <p>
+              {status} {company && <span> at {company}</span>}
+            </p>
+            <p className="my-1">{location && <span>{location}</span>}</p>
+            <Link to={`/profile/${_id}`} className="btn btn-primary">
+              View Profile
+            </Link>
+          </div>
+          <ul>
+            {skills.slice(0, 4).map((skill, index) => (
+              <li key={index} className="text-primary">
+                <FontAwesomeIcon icon={faCheck} />
+                <span className="skill">{skill}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };

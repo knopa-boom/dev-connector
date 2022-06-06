@@ -77,11 +77,8 @@ export const getProfileById = (userId) => async (dispatch) => {
 // GET Github repos
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
-    const res = await axios.get(`https://api.github.com/users/${username}`, {
-      headers: {
-        Authorization: `token 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`,
-      },
-    });
+    const res = await axios.get(`/api/profile/github/${username}`);
+
     dispatch({
       type: GET_REPOS,
       payload: res.data,
