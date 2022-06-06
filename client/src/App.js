@@ -15,7 +15,7 @@ import AddEducation from "./components/profile-form/AddEducation";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import PrivateRoute from "./components/routing/PrivateRoute";
-import store from "./store";
+import store from "./store/store";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 
