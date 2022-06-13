@@ -1,5 +1,6 @@
 import React from "react";
-import { CgWebsite } from "react-icons/cg";
+import PropTypes from "prop-types";
+
 import { FaGlobe } from "react-icons/fa";
 import {
   ImYoutube,
@@ -8,8 +9,6 @@ import {
   ImFacebook2,
   ImLinkedin,
 } from "react-icons/im";
-
-import PropTypes from "prop-types";
 
 const ProfileTop = ({
   profile: {

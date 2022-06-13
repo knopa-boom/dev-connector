@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { GoGitBranch } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addExperience } from "../../actions/profile";
+
+import { GoGitBranch } from "react-icons/go";
 
 const AddExperience = ({ addExperience }) => {
   const [formData, setFormData] = useState({

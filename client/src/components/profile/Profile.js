@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { getProfileById } from "../../actions/profile";
+
 import Spinner from "../layout/Spinner";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
-import { getProfileById } from "../../actions/profile";
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
   const { id } = useParams();

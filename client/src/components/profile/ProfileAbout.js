@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
 
 const ProfileAbout = ({
   profile: {

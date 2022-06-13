@@ -1,4 +1,9 @@
 import React, { useEffect, useState, Fragment } from "react";
+import { Link, useNavigate, Navigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { createProfile, getCurrentProfile } from "../../actions/profile";
+import PropTypes from "prop-types";
+
 import { FaUser } from "react-icons/fa";
 import { BsTwitter } from "react-icons/bs";
 import {
@@ -7,11 +12,6 @@ import {
   AiFillLinkedin,
   AiOutlineInstagram,
 } from "react-icons/ai";
-
-import { Link, useNavigate, Navigate } from "react-router-dom";
-import { connect } from "react-redux";
-import { createProfile, getCurrentProfile } from "../../actions/profile";
-import PropTypes from "prop-types";
 
 const EditProfile = ({
   createProfile,

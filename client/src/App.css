@@ -547,6 +547,10 @@ button {
   margin-bottom: 0.5rem;
 }
 
+.icon-align {
+  vertical-align: middle;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {

@@ -15,6 +15,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Link to="/profiles">Profiles</Link>
       </li>
       <li>
+        <Link to="/posts">Posts</Link>
+      </li>
+      <li>
         <Link to="/dashboard">
           <FaUser size="13px" />
           <span className="m-l">Dashboard</span>
@@ -49,7 +52,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-          <span className="logo-wrap"><FaCode/></span>
+          <span className="logo-wrap">
+            <FaCode />
+          </span>
           <span className="logo-title">DevConnector</span>
         </Link>
       </h1>
