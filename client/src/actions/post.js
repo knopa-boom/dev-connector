@@ -1,6 +1,7 @@
 import api from "../utils/api";
 
-import { GET_POSTS, POST_ERROR, UPDATE_LIKES } from "./types";
+import { GET_POSTS, POST_ERROR, UPDATE_LIKES, DELETE_POST } from "./types";
+import { setAlert } from "./alert";
 
 // Get Posts
 export const getPosts = () => async (dispatch) => {
@@ -57,6 +58,30 @@ export const removeLike = (id) => async (dispatch) => {
         likes: res.data,
       },
     });
+  } catch (error) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response.msg,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+// DELETE post
+export const deletePost = (id) => async (dispatch) => {
+  try {
+    await api.delete(`posts/${id}`);
+
+    dispatch({
+      type: DELETE_POST,
+      payload: {
+        id,
+      },
+    });
+
+    dispatch(setAlert("Post Removed", "success"));
   } catch (error) {
     dispatch({
       type: POST_ERROR,
